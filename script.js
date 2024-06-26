@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         data.push(task);
         localStorage.setItem('tasks', JSON.stringify(data));
     }
+
     //Add Task Form 
     let form = document.querySelector('#task-form');
     form.addEventListener('submit', function (event) {
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
         loadTask();
         this.reset();
     });
+
     //Load Task
     function loadTask(sortOrder = 'new') {
         if (sortOrder === 'new') {
@@ -40,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
             createTaskCard(task, taskListContainer, completedTaskListContainer);
         });
     }
+
 // Edit existing task
     window.editTask = function (taskId) {
         const task = data.find(t => t.id === taskId);
@@ -69,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // delete task
+    // Delete task
     window.confirmDeleteTask = function (taskId) {
         document.getElementById('delete-task-id').value = taskId;
     };
@@ -82,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('#deleteModal .btn-close').click();
     });
 
-    function toggleTaskCompletion(taskId) {
+    function changeTaskCompletion(taskId) {
         const task = data.find(t => t.id === taskId);
         if (task) {
             task.completed = !task.completed;
@@ -90,7 +93,8 @@ document.addEventListener('DOMContentLoaded', function () {
             loadTask();
         }
     }
-    // Clearing the completed task
+
+    // Clearing the completed tasks
     let clear = document.getElementById('clear-btn');
     clear.addEventListener('click', function () {
         data = data.filter(t => t.completed !== true);
@@ -98,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
         loadTask();
     });
 
-    //Creating task card for active and completed task
+    //Creating task card for active task completed task
     function createTaskCard(task, taskListContainer, completedTaskListContainer) {
         let taskCard = document.createElement('div');
         taskCard.className = 'task-card';
@@ -113,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
         checkInput.className = 'task-check';
         checkInput.checked = task.completed;
         checkInput.addEventListener('change', function () {
-            toggleTaskCompletion(task.id);
+            changeTaskCompletion(task.id);
         });
         checkDiv.appendChild(checkInput);
 
@@ -208,6 +212,7 @@ document.addEventListener('DOMContentLoaded', function () {
             taskTitleImg.src = 'images/green-dot.svg';
         }
     }
+
     // Search task
     function searchTask() {
         let searchInput = document.getElementById("search-input").value.toLowerCase();
@@ -220,6 +225,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+    
     // Sort task
     document.getElementById("search-input").addEventListener('input', searchTask);
     let drop = document.getElementById("dropdownMenuButton");

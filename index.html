@@ -15,12 +15,15 @@
 
 <body>
     <div class="main-container">
+
+        <!-- Header -->
         <div class="task-add">
             <h2 class="main-title" id="head">My Tasks</h2>
             <button type="button" class="btn btn-primary add-btn" data-bs-toggle="modal" data-bs-target="#addModal">Add
                 New Task</button>
         </div>
         <hr>
+
         <!-- Add Task Modal -->
         <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -55,10 +58,14 @@
             </div>
         </div>
         <div class="task-filter">
+
+            <!-- Search Bar Section-->
             <div class="search-container">
                 <input type="text" id="search-input" placeholder="Search by task name" class="form-control">
                 <img src="images/search.svg" class="search-icon">
             </div>
+
+            <!-- Sort Section -->
             <div class="task-sort">
                 <span> Sort by &colon;</span>
                 <div class="dropdown">
@@ -71,10 +78,12 @@
                 </div>
             </div>
         </div>
+
+        <!-- Active Task Card -->
         <h6 class="active-task-title"> Active Tasks </h6>
         <div class="active-task" id="task-list">
-
         </div>
+
         <!-- Edit Task Modal -->
         <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -109,6 +118,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Delete Task Modal -->
         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -130,7 +140,8 @@
                 </div>
             </div>
         </div>
-
+        
+        <!-- Completed Task Card -->
         <div class="completed-task-title">
             <h6 class="completed-task-heading"> Completed Tasks </h6>
             <button class="btn btn-outline-primary clear-btn" id="clear-btn">Clear Completed Tasks</button>
