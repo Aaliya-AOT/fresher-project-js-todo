@@ -135,6 +135,8 @@ body{
 .clear-btn{
     border-color: #0C39C7;
     background-color: white;
+    font-size: 14px;
+    font-weight: 600;
     color: #0C39C7;
 }
 .clear-btn:hover{

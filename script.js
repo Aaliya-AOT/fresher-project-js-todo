@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         data.push(task);
         localStorage.setItem('tasks', JSON.stringify(data));
     }
-
+    //Add Task Form 
     let form = document.querySelector('#task-form');
     form.addEventListener('submit', function (event) {
         event.preventDefault();
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
         loadTask();
         this.reset();
     });
-
+    //Load Task
     function loadTask(sortOrder = 'new') {
         if (sortOrder === 'new') {
             data.sort((a, b) => b.id - a.id);
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
             createTaskCard(task, taskListContainer, completedTaskListContainer);
         });
     }
-
+// Edit existing task
     window.editTask = function (taskId) {
         const task = data.find(t => t.id === taskId);
         if (task) {
@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // delete task
     window.confirmDeleteTask = function (taskId) {
         document.getElementById('delete-task-id').value = taskId;
     };
@@ -89,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
             loadTask();
         }
     }
-
+    // Clearing the completed task
     let clear = document.getElementById('clear-btn');
     clear.addEventListener('click', function () {
         data = data.filter(t => t.completed !== true);
@@ -97,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
         loadTask();
     });
 
+    //Creating task card for active and completed task
     function createTaskCard(task, taskListContainer, completedTaskListContainer) {
         let taskCard = document.createElement('div');
         taskCard.className = 'task-card';
@@ -196,7 +198,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         taskCard.appendChild(taskCheckInfo);
         taskCard.appendChild(taskButton);
-
         if (task.completed) {
             completedTaskListContainer.appendChild(taskCard);
         } else {
@@ -207,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
             taskTitleImg.src = 'images/green-dot.svg';
         }
     }
-
+    // Search task
     function searchTask() {
         let searchInput = document.getElementById("search-input").value.toLowerCase();
         taskListContainer.innerHTML = "";
@@ -219,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
+    // Sort task
     document.getElementById("search-input").addEventListener('input', searchTask);
     let drop = document.getElementById("dropdownMenuButton");
     document.getElementById('sort-new').addEventListener('click', function () {
