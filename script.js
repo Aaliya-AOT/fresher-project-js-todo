@@ -1,6 +1,7 @@
 function loadTask() {
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-
+    
+    //creating task
     function createTask(title, description, duedate) {
         const data = {
             id: Date.now(),
@@ -14,6 +15,7 @@ function loadTask() {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }
 
+    //task rendering
     function renderTask(filteredTask = tasks) {
         const activeList = document.getElementById("active-task-container")
         const completedList = document.getElementById("completed-task-container")
@@ -31,6 +33,8 @@ function loadTask() {
         });
     }
 
+
+    //clear completed task
     let clear = document.getElementById("clear-completed-btn");
     clear.addEventListener('click', function(){
         tasks = tasks.filter(t => t.completed !== true)
@@ -38,6 +42,7 @@ function loadTask() {
         renderTask();
     })
 
+    //search task
     let search = document.getElementById("search-input")
     search.addEventListener('input', function(){
         let searchInput = this.value.toLowerCase();
@@ -45,6 +50,8 @@ function loadTask() {
         renderTask(searchedTasks)
     })
     
+
+    //sort task
     let sort = document.getElementById("sort");
     sort.addEventListener('change', function(event){
         let sortedTasks
@@ -56,6 +63,8 @@ function loadTask() {
         }
         renderTask(sortedTasks)
     })
+
+    //add task modal and add fn
     let form = document.getElementById("add-task-form")
     form.addEventListener('submit', function (event) {
         event.preventDefault()
@@ -68,6 +77,8 @@ function loadTask() {
         document.getElementById("add-task-form").reset(); 
     })
     
+
+    //edit task modal and edit fn
     function editTask(taskId) {
         editForm = document.getElementById("edit-task-form")
         const task = tasks.find(task1 => task1.id == taskId)
@@ -93,6 +104,8 @@ function loadTask() {
             }
         })
     }
+
+    //delete task
     function deleteTask(taskId) {
         let deleteBtn = document.getElementById("delete-btn")
         deleteBtn.addEventListener('click', function () {
@@ -101,6 +114,8 @@ function loadTask() {
             renderTask();
         })
     }
+
+    //update task status
     function changetaskStatus(taskId) {
         tasks = tasks.map(task => {
             if (task.id === taskId) {
@@ -112,6 +127,7 @@ function loadTask() {
         renderTask();
     }
 
+    //creating task card
     function createTaskCard(task) {
 
         function formatDate(dateString) {
